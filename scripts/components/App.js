@@ -128,6 +128,7 @@ class App extends React.Component {
     }
 
     showHide(){
+        console.log('hidding or showing');
         this.setState({
             hidden : this.state.hidden ? false : true
         })
@@ -139,14 +140,21 @@ class App extends React.Component {
         })
     }
 
+    addItem(item){
+        //add the item to the database
+        console.log("adding item", item);
+    }
+
     render() {
         return (
             <div>
                 <Header tagline="Your data below" storeId={this.props.params.storeId}/>
                 <OurTable 
                     sampleData={this.state.sampleData} 
-                    toggleHidden = {this.showHide}/>
-                {this.state.hidden ? null : <AddItemForm />}
+                    toggleHidden = {this.showHide}
+                />
+                {this.state.hidden ? null : <AddItemForm showHide = {this.showHide} addItem = {this.addItem} />}
+
             </div>
         )
     }   
