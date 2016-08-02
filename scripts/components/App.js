@@ -8,7 +8,7 @@ import Header from './Header';
 import reactMixin from 'react-mixin';
 import autobind from 'autobind-decorator'
 
-import Item from './Item';
+import AddItemForm from './AddItemForm';
 
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
@@ -114,20 +114,6 @@ class OurTable extends React.Component {
 
 }
 
-@autobind
-class AddItem extends React.Component {
-    constructor(){
-        super();
-    }
-
-    render() {
-
-        return (
-            <p> additem</p>
-        )
-    }
-};
-
 
 @autobind  //makes "this" refer to the react component
 class App extends React.Component {
@@ -160,7 +146,7 @@ class App extends React.Component {
                 <OurTable 
                     sampleData={this.state.sampleData} 
                     toggleHidden = {this.showHide}/>
-                {this.state.hidden ? null : <AddItem />}
+                {this.state.hidden ? null : <AddItemForm />}
             </div>
         )
     }   
