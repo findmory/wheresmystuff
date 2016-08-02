@@ -34,6 +34,17 @@ class AddItemForm extends React.Component{
     }
 
     render() {
+
+        //TODO: can we fill out the location with the data list?
+        /*
+            - App
+               - AddItemForm
+               - Header
+               - OurTable (contains the data)
+                    - AddItemForm 
+        */
+
+
         return (
             <form ref="addItemForm" onSubmit={this.addItem}>
                 <input type="text" ref="name" placeholder="item name"/>
