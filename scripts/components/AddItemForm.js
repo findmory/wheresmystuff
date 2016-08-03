@@ -26,7 +26,7 @@ class AddItemForm extends React.Component{
         console.log(item);
 
         // 3. Add the fish the App State
-        this.props.addItem(item);
+        this.props.writeItem(item);
 
         // 4 . clear the form and hide the control
         this.refs.addItemForm.reset();
@@ -35,6 +35,7 @@ class AddItemForm extends React.Component{
 
     render() {
 
+        // pass the data from OurTable down to here
         //TODO: can we fill out the location with the data list?
         /*
             - App

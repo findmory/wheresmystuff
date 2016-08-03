@@ -11,8 +11,8 @@ class App extends React.Component {
         super();
 
         this.state = {
-            sampleData : require('../sample-data'),
-            hidden : true
+            sampleData : require('../sample-data')
+           
         }
     }
 
@@ -22,17 +22,8 @@ class App extends React.Component {
         })
     }
 
-    addItem(item){
-        //add the item to the database
-        console.log("adding item", item);
-    }
-
-    showHide(){
-        console.log('hidding or showing');
-        this.setState({
-            hidden : this.state.hidden ? false : true
-        })
-    }
+    
+    
 
     render() {
         return (
@@ -42,10 +33,7 @@ class App extends React.Component {
                     sampleData={this.state.sampleData} 
                     toggleHidden = {this.showHide}
                 />
-                {this.state.hidden ? null : <AddItemForm 
-                    showHide = {this.showHide} 
-                    addItem = {this.addItem} 
-                />}
+                
 
             </div>
         )

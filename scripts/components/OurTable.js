@@ -16,6 +16,9 @@ class OurTable extends React.Component {
     constructor(){
         super();
         this.locations = {};
+        this.state =  {
+             hidden : true
+        }
     }
 
 
@@ -48,13 +51,24 @@ class OurTable extends React.Component {
         alert("test");
     }
 
-    btnClick(){
-        console.log('toggling');
-        {this.props.toggleHidden()}
-    }
+    // btnClick(){
+    //     console.log('toggling');
+    //     this.show();
+    // }
     
     enumFormatter(cell, row, enumObject) {
         return enumObject[cell];
+    }
+
+    showHide(){
+        console.log('hidding or showing');
+        this.setState({
+            hidden : this.state.hidden ? false : true
+        })
+    }
+
+    writeItem(item){
+        console.log('write item to DB and state: ', item);
     }
 
     // pass in a column name.  generate an object with all the unique names of this column for drop-down
@@ -89,7 +103,7 @@ class OurTable extends React.Component {
 
         return (
             <div>
-                <button type="button" className="btn btn-success btn-padding" onClick={this.btnClick}>Add New</button>
+                <button type="button" className="btn btn-success btn-padding" onClick={this.showHide}>Add New</button>
                 <BootstrapTable 
                     data={this.dataToArray(this.props.sampleData, "id")} 
                     striped={false} 
@@ -107,6 +121,10 @@ class OurTable extends React.Component {
 	                    Location
                     </TableHeaderColumn>
                 </BootstrapTable>
+                {this.state.hidden ? null : <AddItemForm 
+                    showHide = {this.showHide}
+                    writeItem = {this.writeItem}
+                />}
             </div>
         )
     }
