@@ -45,11 +45,11 @@ class AddItemForm extends React.Component{
     render() {
 
         return (
-            <form ref="addItemForm" onSubmit={this.addItem}>
-                <input type="text" ref="name" placeholder="item name"/>
+            <form className="addItemHolder" ref="addItemForm" onSubmit={this.addItem}>
+                <input className="inputField" type="text" ref="name" placeholder="item name"/>
                 <DropDownComplete locations={this.props.locations} addLocation={this.addLocation}/>
-                <button type="button" onClick={this.cancel}>Cancel</button>
-                <button type="submit">OK</button>
+                <button className="btn btn-primary" type="button" onClick={this.cancel}>Cancel</button>
+                <button className="btn btn-success" type="submit">OK</button>
             </form>
         )
     }
