@@ -46,6 +46,15 @@ class OurTable extends React.Component {
         return dataArray;
     }
 
+    objToArray(obj){
+      var ret = [];
+      for (var item in obj){
+          ret.push(obj[item])
+      }
+
+      return ret;
+  }
+
     onAfterSaveCell(){
         console.log("saved!");
         alert("test");
@@ -129,7 +138,8 @@ class OurTable extends React.Component {
                 {this.state.hidden ? null : <AddItemForm 
                     showHide = {this.showHide}
                     writeItem = {this.writeItem}
-                    locations = {this.locations}
+                    
+                    locations = {this.objToArray(this.locations)}
                 />}
             </div>
         )

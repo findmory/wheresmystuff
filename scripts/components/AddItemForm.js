@@ -1,15 +1,12 @@
 import React from 'react';
 import autobind from 'autobind-decorator';
-import DropDownComplete from './DropDownComplete';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 @autobind
 class AddItemForm extends React.Component{
 
     constructor(){
         super();
-        this.state = {
-            location:''
-        }
     }
 
     cancel(e){
@@ -23,7 +20,7 @@ class AddItemForm extends React.Component{
 
         var item = {
             name: this.refs.name.value,
-            location: this.state.location
+            location: this.refs.location.value
         }
 
         console.log('our item is: ', item);
@@ -36,18 +33,24 @@ class AddItemForm extends React.Component{
         this.props.showHide();
     }
 
-    addLocation(loc){
-        this.setState({
-            location: loc
-        })
+    //get the value of the locations and use to propogate a dropdown
+    setLocation(eventKey, event){
+        this.refs.location.value = event.target.innerHTML;
     }
 
+
     render() {
+        console.log('the locations are: ', this.props.locations);
 
         return (
             <form className="addItemHolder" ref="addItemForm" onSubmit={this.addItem}>
                 <input className="inputField" type="text" ref="name" placeholder="item name"/>
-                <DropDownComplete locations={this.props.locations} addLocation={this.addLocation}/>
+                <input className="inputField" type="text" ref="location" placeholder="item location"/>
+                <DropdownButton title="Dropdown" id="bg-nested-dropdown" onSelect={this.setLocation}>
+                    {this.props.locations.map(function(item){
+                        return <MenuItem key={item} eventKey={item}>{item}</MenuItem>
+                    })}
+                </DropdownButton>
                 <button className="btn btn-primary" type="button" onClick={this.cancel}>Cancel</button>
                 <button className="btn btn-success" type="submit">OK</button>
             </form>
