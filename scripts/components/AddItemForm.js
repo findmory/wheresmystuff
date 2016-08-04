@@ -7,6 +7,9 @@ class AddItemForm extends React.Component{
 
     constructor(){
         super();
+        this.state = {
+            location:''
+        }
     }
 
     cancel(e){
@@ -18,13 +21,12 @@ class AddItemForm extends React.Component{
         // 1. stop the form from submitting
         e.preventDefault();
 
-        // 2. take the data from the form and create an object
         var item = {
             name: this.refs.name.value,
-            location: this.refs.location.value
+            location: this.state.location
         }
 
-        console.log(item);
+        console.log('our item is: ', item);
 
         // 3. Add the fish the App State
         this.props.writeItem(item);
@@ -34,28 +36,18 @@ class AddItemForm extends React.Component{
         this.props.showHide();
     }
 
+    addLocation(loc){
+        this.setState({
+            location: loc
+        })
+    }
+
     render() {
-
-        // pass the data from OurTable down to here
-        //TODO: can we fill out the location with the data list?
-        /*
-            - App
-               - AddItemForm
-               - Header
-               - OurTable (contains the data)
-                    - AddItemForm 
-        */
-
-        // let dropdownItems = Object.keys(this.props.locations);
-        // console.log("we have some locations for our dropdown! ", dropdownItems);
-        //TODO: make a list of these for the input dropdown below
 
         return (
             <form ref="addItemForm" onSubmit={this.addItem}>
                 <input type="text" ref="name" placeholder="item name"/>
-                <input type="text" ref="location" placeholder="location" />
-                
-                <DropDownComplete locations={this.props.locations}/>
+                <DropDownComplete locations={this.props.locations} addLocation={this.addLocation}/>
                 <button type="button" onClick={this.cancel}>Cancel</button>
                 <button type="submit">OK</button>
             </form>
@@ -63,7 +55,3 @@ class AddItemForm extends React.Component{
     }
 }
 export default AddItemForm;
-
-/*
-
-        */

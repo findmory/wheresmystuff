@@ -53,6 +53,7 @@ class DropDownComplete extends React.Component {
     this.setState({
       value: newValue
     });
+    this.props.addLocation(newValue);
   }
 
   onSuggestionsUpdateRequested({ value }) {
@@ -64,7 +65,7 @@ class DropDownComplete extends React.Component {
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {
-      placeholder: 'Type location',
+      placeholder: 'item location',
       value,
       onChange: this.onChange
     };
