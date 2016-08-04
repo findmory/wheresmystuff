@@ -31,6 +31,7 @@
     "re-base": "1.2.1",
     "react": "^15.0.0",
     "react-addons-css-transition-group": "^15.0.0",
+    "react-autosuggest": "^3.9.0",
     "react-bootstrap-table": "^2.3.8",
     "react-catalyst": "0.3.0",
     "react-dom": "^15.0.0",

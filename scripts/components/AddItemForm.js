@@ -1,5 +1,6 @@
 import React from 'react';
-import autobind from 'autobind-decorator'
+import autobind from 'autobind-decorator';
+import DropDownComplete from './DropDownComplete';
 
 @autobind
 class AddItemForm extends React.Component{
@@ -45,14 +46,16 @@ class AddItemForm extends React.Component{
                     - AddItemForm 
         */
 
-        let dropdownItems = Object.keys(this.props.locations);
-        console.log("we have some locations for our dropdown! ", dropdownItems);
+        // let dropdownItems = Object.keys(this.props.locations);
+        // console.log("we have some locations for our dropdown! ", dropdownItems);
         //TODO: make a list of these for the input dropdown below
 
         return (
             <form ref="addItemForm" onSubmit={this.addItem}>
                 <input type="text" ref="name" placeholder="item name"/>
                 <input type="text" ref="location" placeholder="location" />
+                
+                <DropDownComplete locations={this.props.locations}/>
                 <button type="button" onClick={this.cancel}>Cancel</button>
                 <button type="submit">OK</button>
             </form>
@@ -60,3 +63,7 @@ class AddItemForm extends React.Component{
     }
 }
 export default AddItemForm;
+
+/*
+
+        */
