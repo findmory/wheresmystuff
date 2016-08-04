@@ -22,9 +22,6 @@ class App extends React.Component {
         })
     }
 
-    
-    
-
     render() {
         return (
             <div>
@@ -33,13 +30,10 @@ class App extends React.Component {
                     sampleData={this.state.sampleData} 
                     toggleHidden = {this.showHide}
                 />
-                
-
             </div>
         )
     }   
 };
-
 
 
 export default App;

@@ -15,7 +15,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 class OurTable extends React.Component { 
     constructor(){
         super();
-        this.locations = {};
+        this.locations = {};  //TODO: do i need to make this state?
         this.state =  {
              hidden : true
         }
@@ -51,11 +51,6 @@ class OurTable extends React.Component {
         alert("test");
     }
 
-    // btnClick(){
-    //     console.log('toggling');
-    //     this.show();
-    // }
-    
     enumFormatter(cell, row, enumObject) {
         return enumObject[cell];
     }
@@ -74,7 +69,7 @@ class OurTable extends React.Component {
     // pass in a column name.  generate an object with all the unique names of this column for drop-down
     listItemsInColumn(colName) {
         let d = this.props.sampleData;
-        Object.keys(d) .map(
+        Object.keys(d).map(
             (key) => {
                 this.locations[d[key][colName]] = d[key][colName];
             }
@@ -110,20 +105,31 @@ class OurTable extends React.Component {
                     hover={true} 
                     cellEdit={cellEditProp}>
 
-                    <TableHeaderColumn isKey={true} dataField="id" hidden={ true }>ID</TableHeaderColumn>
-                    <TableHeaderColumn dataField="name" width={w} dataSort={true}>Name</TableHeaderColumn>
+                    <TableHeaderColumn isKey={true} dataField="id" hidden={true}>ID</TableHeaderColumn>
+
+                    <TableHeaderColumn 
+                        dataField="name" 
+                        filter={{type:"TextFilter", placeholder:"Search"}}
+                        width={w} 
+                        dataSort={true} >
+                        Name
+                    </TableHeaderColumn>
+
                     <TableHeaderColumn 
                         dataField="location" 
-                        filterFormatted 
+                        filterFormatted
+                        dataSort={true}
                         dataFormat={ this.enumFormatter } 
                         formatExtraData={ this.locations }
                         filter={ { type: 'SelectFilter', options: this.locations } }>
 	                    Location
                     </TableHeaderColumn>
+
                 </BootstrapTable>
                 {this.state.hidden ? null : <AddItemForm 
                     showHide = {this.showHide}
                     writeItem = {this.writeItem}
+                    locations = {this.locations}
                 />}
             </div>
         )

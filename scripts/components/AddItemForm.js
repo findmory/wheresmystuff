@@ -45,6 +45,9 @@ class AddItemForm extends React.Component{
                     - AddItemForm 
         */
 
+        let dropdownItems = Object.keys(this.props.locations);
+        console.log("we have some locations for our dropdown! ", dropdownItems);
+        //TODO: make a list of these for the input dropdown below
 
         return (
             <form ref="addItemForm" onSubmit={this.addItem}>
