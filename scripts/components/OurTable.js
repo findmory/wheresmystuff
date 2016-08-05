@@ -63,14 +63,17 @@ class OurTable extends React.Component {
       return ret;
   }
 
+
+    //TODO: write to db
     onAfterSaveCell(){
         console.log("saved!");
         alert("test");
     }
 
-    enumFormatter(cell, row, enumObject) {
-        return enumObject[cell];
-    }
+    // enumFormatter(cell, row, enumObject) {
+    //     console.log('the enum = ', enumObject[cell])
+    //     return enumObject[cell];
+    // }
 
     showHide(){
         console.log('hidding or showing');
@@ -79,13 +82,9 @@ class OurTable extends React.Component {
         })
     }
 
-    writeItem(item){
-        console.log('write item to DB and state: ', item);
-    }
-
     // pass in a column name.  generate an object with all the unique names of this column for drop-down
     listItemsInColumn(colName) {
-        let d = this.props.sampleData;
+        let d = this.props.items;
         Object.keys(d).map(
             (key) => {
                 this.locations[d[key][colName]] = d[key][colName];
@@ -117,7 +116,7 @@ class OurTable extends React.Component {
             <div>
                 <button type="button" className="btn btn-success btn-padding" onClick={this.showHide}>Add New</button>
                 <BootstrapTable 
-                    data={this.dataToArray(this.props.sampleData, "id")} 
+                    data={this.dataToArray(this.props.items, "id")} 
                     striped={false} 
                     hover={true} 
                     cellEdit={cellEditProp}>
@@ -134,9 +133,9 @@ class OurTable extends React.Component {
 
                     <TableHeaderColumn 
                         dataField="location" 
-                        filterFormatted
+                        filterFormatted={false}
                         dataSort={true}
-                        dataFormat={ this.enumFormatter } 
+                        
                         formatExtraData={ this.locations }
                         filter={ { type: 'SelectFilter', options: this.locations, placeholder:"Select" } }>
 	                    Location
@@ -145,9 +144,8 @@ class OurTable extends React.Component {
                 </BootstrapTable>
                 {this.state.hidden ? null : <AddItemForm 
                     showHide = {this.showHide}
-                    writeItem = {this.writeItem}
-                    
                     locations = {this.objToArray(this.locations)}
+                    writeItem = {this.props.writeItem}
                 />}
             </div>
         )
