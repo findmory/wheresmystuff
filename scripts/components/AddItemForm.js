@@ -34,8 +34,8 @@ class AddItemForm extends React.Component{
     }
 
     //get the value of the locations and use to propogate a dropdown
-    setLocation(eventKey, event){
-        this.refs.location.value = event.target.innerHTML;
+    setLoc(e){
+        this.refs.location.value = e.target.value;
     }
 
 
@@ -46,13 +46,14 @@ class AddItemForm extends React.Component{
             <form className="addItemHolder" ref="addItemForm" onSubmit={this.addItem}>
                 <input className="inputField" type="text" ref="name" placeholder="item name"/>
                 <input className="inputField" type="text" ref="location" placeholder="item location"/>
-                <DropdownButton title="Dropdown" id="bg-nested-dropdown" onSelect={this.setLocation}>
+                <select onChange={this.setLoc}>
+                    <option value="">Location</option>
                     {this.props.locations.map(function(item){
-                        return <MenuItem key={item} eventKey={item}>{item}</MenuItem>
+                        return <option key={item} value={item}>{item}</option>
                     })}
-                </DropdownButton>
+                </select>
                 <button className="btn btn-primary" type="button" onClick={this.cancel}>Cancel</button>
-                <button className="btn btn-success" type="submit">OK</button>
+                <button className="btn btn-ok" type="submit">OK</button>
             </form>
         )
     }

@@ -46,7 +46,15 @@ class OurTable extends React.Component {
         return dataArray;
     }
 
+    /*
+        takes data formatted like
+        {key2: 'val1', key2: 'val2'}
+        becomes
+        [val1, val2]
+        becuase i need an array of the values for dropdown
+    */
     objToArray(obj){
+        console.log('the obj is: ', obj);
       var ret = [];
       for (var item in obj){
           ret.push(obj[item])
