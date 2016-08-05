@@ -138,7 +138,7 @@ class OurTable extends React.Component {
                         dataSort={true}
                         dataFormat={ this.enumFormatter } 
                         formatExtraData={ this.locations }
-                        filter={ { type: 'SelectFilter', options: this.locations } }>
+                        filter={ { type: 'SelectFilter', options: this.locations, placeholder:"Select" } }>
 	                    Location
                     </TableHeaderColumn>
 

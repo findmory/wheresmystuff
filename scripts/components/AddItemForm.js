@@ -43,17 +43,20 @@ class AddItemForm extends React.Component{
         console.log('the locations are: ', this.props.locations);
 
         return (
-            <form className="addItemHolder" ref="addItemForm" onSubmit={this.addItem}>
-                <input className="inputField" type="text" ref="name" placeholder="item name"/>
-                <input className="inputField" type="text" ref="location" placeholder="item location"/>
-                <select onChange={this.setLoc}>
+            <form className="addItemHolder container-fluid" ref="addItemForm" onSubmit={this.addItem}>
+                <input className="inputField col-xs-12 col-md-12" type="text" ref="name" placeholder="item name"/>
+                <input className="locationField col-xs-8 col-md-8" type="text" ref="location" placeholder="item location"/>
+                <select onChange={this.setLoc} className="locationDrop col-xs-3 col-md-3">
                     <option value="">Location</option>
                     {this.props.locations.map(function(item){
                         return <option key={item} value={item}>{item}</option>
                     })}
                 </select>
-                <button className="btn btn-primary" type="button" onClick={this.cancel}>Cancel</button>
-                <button className="btn btn-ok" type="submit">OK</button>
+                <div className="col-xs-12 col-md-12">
+                    <button className="btn btn-primary col-xs-4 col-md-4" type="button" onClick={this.cancel}>Cancel</button>
+                    <span className="col-xs-4 col-md-4"></span>
+                    <button className="btn btn-success col-xs-4 col-md-4" type="submit">OK</button>
+                </div>
             </form>
         )
     }
