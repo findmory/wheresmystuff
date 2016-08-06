@@ -13,9 +13,9 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
 @autobind 
 class OurTable extends React.Component { 
-    constructor(){
-        super();
-        this.locations = {};  //TODO: do i need to make this state?
+    constructor(props){
+        super(props);
+        this.locations = {};  //not state
         this.state =  {
              hidden : true
         }
@@ -90,19 +90,22 @@ class OurTable extends React.Component {
                 this.locations[d[key][colName]] = d[key][colName];
             }
         )
-        console.log("locations: ",this.locations);
     }
 
     componentWillUpdate(){
-        console.log('updating...')
+        console.log('will update...')
+        
+    }
 
+    componentDidUpdate(){
+        console.log('did update...');
+        this.listItemsInColumn("location");
+       
     }
 
        
     render() {
-        console.log('calling render...');
-        
-        //
+        console.log('calling render...', this.props.items);
         this.listItemsInColumn("location");
 
         const cellEditProp = {
